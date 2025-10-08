@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Systems: A Comprehensive Guide</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold text-gray-900 tracking-tight">
+                <span class="text-blue-600">Tech</span>Blog
+            </a>
+            <nav class="space-x-4 hidden sm:block">
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a>
+                <a href="#" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Blog</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Projects</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-20">
+
+        <!-- Article Header (Hero Section) -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight text-gray-900 mb-4">
+                The Complete Guide to Embedded Systems: From Basics to Advanced IoT
+            </h1>
+            <p class="text-lg text-gray-500">
+                <span class="font-medium text-blue-600">By- Himanshu Verma</span> &bull; Published on September 27, 2025
+                &bull; <span class="font-medium">15 min read</span>
+            </p>
+        </div>
+
+        <!-- Article Layout (Single Column for better focus) -->
+        <div class="bg-white p-6 sm:p-10 lg:p-16 rounded-2xl shadow-xl">
+
+            <!-- Gemini Terminology Explainer -->
+            <div class="mb-10 p-6 bg-gray-50 border border-gray-200 rounded-xl shadow-inner">
+                <h3 class="text-xl font-bold mb-4 flex items-center mt-0 border-none pb-0">
+                    <span class="text-2xl mr-2">✨</span> AI Terminology Explainer
+                </h3>
+                <p class="text-gray-600 mb-4 text-sm">Need a quick definition for a term like "RTOS" or "SPI"? Type it
+                    below for a grounded, concise explanation.</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input id="termInput" type="text" placeholder="e.g., RTOS, CAN Bus, TinyML"
+                        class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <button onclick="explainTerminology()" id="explainBtn"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-200 disabled:opacity-50">
+                        Explain Term
+                    </button>
+                </div>
+                <div id="explainerOutput"
+                    class="mt-4 hidden p-4 bg-yellow-50 border-l-4 border-yellow-500 text-gray-800 rounded-lg text-sm">
+                    <!-- Output goes here -->
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto article-content" id="articleContent">
+                <!-- START OF USER-PROVIDED CONTENT -->
+                <p>Embedded systems are small computers made to do one specific job inside a larger machine, like a car,
+                    medical device, or home gadget. Unlike normal computers that do many tasks, they focus on one job
+                    with speed and reliability. They use parts like microcontrollers, sensors, and software to work.
+                    This guide explains the basics of embedded systems, their types, parts, coding, and communication as
+                    well as simple projects to help beginners learn and prepare for future technology.</p>
+
+                <!-- SECTION 1: What is an Embedded System? -->
+                <div class="flex justify-between items-center section-header" id="section-header-1">
+                    <h2 id="section-1">What is an Embedded System?</h2>
+                    <button onclick="summarizeSection('section-1')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-1" class="summary-box hidden"></div>
+
+                <p>Before delving into the embedded systems tutorial, let&rsquo;s understand what it is. So, an
+                    **embedded system** is a special-purpose computer system designed to perform a dedicated function or
+                    set of functions within a larger mechanical or electrical system. Unlike a general-purpose computer
+                    (like a PC), which can run a variety of applications, an embedded system is optimized to perform a
+                    specific task efficiently and reliably. For example, the microcontroller inside a washing machine
+                    controls the washing cycles, water temperature, and spin speed. It is not designed to run a word
+                    processor or browse the internet.</p>
+                <h3>Embedded System vs General-Purpose Computer</h3>
+                <figure>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><strong>Feature</strong></td>
+                                <td><strong>Embedded System</strong></td>
+                                <td><strong>General-Purpose Computer</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Purpose</strong></td>
+                                <td>Dedicated task</td>
+                                <td>Multiple tasks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>User Interface</strong></td>
+                                <td>Often minimal or none</td>
+                                <td>Rich graphical user interface</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Operating System</strong></td>
+                                <td>Often, none or RTOS</td>
+                                <td>Full-featured OS (Windows, Linux)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Power Consumption</strong></td>
+                                <td>Low</td>
+                                <td>Higher</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cost</strong></td>
+                                <td>Low</td>
+                                <td>Higher</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Real-time Capability</strong></td>
+                                <td>Often required</td>
+                                <td>Usually not required</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </figure>
+                <h4>Real-World Examples</h4>
+                <ul>
+                    <li>**Automotive:** Engine control units (ECUs), anti-lock braking systems (ABS), airbag
+                        controllers.</li>
+                    <li>**Consumer Electronics:** Digital cameras, smart TVs, microwave ovens.</li>
+                    <li>**Medical Devices:** Pacemakers, infusion pumps, diagnostic equipment.</li>
+                    <li>**Industrial Automation:** PLCs (Programmable Logic Controllers), robotic arms.</li>
+                    <li>**Communication:** Routers, modems, mobile phones.</li>
+                </ul>
+                <h4>Why Learn Embedded Systems?</h4>
+                <p>Embedded systems are everywhere and form the backbone of modern technology. Learning embedded systems
+                    opens opportunities in diverse fields such as automotive, aerospace, healthcare, consumer
+                    electronics, and IoT (Internet of Things).</p>
+
+
+                <!-- SECTION 2: Characteristics of Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-2">
+                    <h2 id="section-2">2. Characteristics of Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-2')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-2" class="summary-box hidden"></div>
+
+                <p>Embedded systems have several defining characteristics. Here are some of them in this embedded
+                    systems tutorial:</p>
+                <h4>2.1 Real-Time Operation</h4>
+                <p>Many embedded systems must respond to inputs or events within strict timing constraints. For example,
+                    an airbag system must deploy within milliseconds of detecting a collision. Failure to meet timing
+                    deadlines can lead to catastrophic failures.</p>
+                <ul>
+                    <li>**Hard real-time:** Missing a deadline is unacceptable (e.g., pacemaker).</li>
+                    <li>**Soft real-time:** Missing a deadline degrades performance but is not fatal (e.g., video
+                        streaming).</li>
+                </ul>
+                <h4>2.2 Dedicated Functionality</h4>
+                <p>Embedded systems are designed to perform a specific function or a set of related functions. This
+                    specialization allows optimization in hardware and software.</p>
+                <h4>2.3 Resource Constraints</h4>
+                <p>Embedded systems often have limited resources:</p>
+                <ul>
+                    <li>**Memory:** Limited RAM and ROM/Flash.</li>
+                    <li>**Processing power:** Low clock speeds and simple CPUs.</li>
+                    <li>**Power:** Battery-operated devices require low power consumption.</li>
+                </ul>
+                <h4>2.4 Reliability and Stability</h4>
+                <p>Embedded systems often operate in harsh environments (temperature extremes, vibration, dust) and must
+                    run continuously without failure.</p>
+                <h4>2.5 Small Size and Cost</h4>
+                <p>Embedded systems are often physically small and cost-sensitive, requiring compact and inexpensive
+                    components.</p>
+
+                <!-- SECTION 3: Components of Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-3">
+                    <h2 id="section-3">3. Components of Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-3')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-3" class="summary-box hidden"></div>
+
+                <p>An embedded system is a combination of hardware and software components working together.</p>
+                <h4>3.1 Hardware Components</h4>
+                <h5>3.1.1 Processor</h5>
+                <p>The processor executes instructions and controls the system. It can be:</p>
+                <ul>
+                    <li>**Microcontroller (MCU):** Integrates CPU, memory, and peripherals on a single chip.</li>
+                    <li>**Microprocessor (MPU):** CPU only, requires external memory and peripherals.</li>
+                </ul>
+                <h5>3.1.2 Memory</h5>
+                <ul>
+                    <li>**ROM/Flash:** Stores the program code (firmware).</li>
+                    <li>**RAM:** Stores temporary data during execution.</li>
+                    <li>**EEPROM:** Non-volatile memory for storing configuration or calibration data.</li>
+                </ul>
+                <h5>3.1.3 Input/Output Interfaces</h5>
+                <ul>
+                    <li>**Sensors:** Convert physical phenomena (temperature, pressure) into electrical signals.</li>
+                    <li>**Actuators:** Convert electrical signals into physical actions (motors, LEDs).</li>
+                    <li>**Communication ports:** UART, SPI, I2C, USB, Ethernet, etc.</li>
+                </ul>
+                <h5>3.1.4 Power Supply</h5>
+                <p>Embedded systems may be powered by batteries or external power sources. Power management is critical
+                    for battery-operated devices.</p>
+                <h4>3.2 Software Components</h4>
+                <h5>3.2.1 Firmware</h5>
+                <p>Firmware is the low-level software programmed into non-volatile memory that directly controls
+                    hardware.</p>
+                <h5>3.2.2 Application Software</h5>
+                <p>Implements the specific functionality of the embedded system, such as controlling a motor or reading
+                    sensor data.</p>
+                <h5>3.2.3 Operating System</h5>
+                <p>Some embedded systems run without an OS (bare-metal), while others use an RTOS or embedded Linux for
+                    multitasking and resource management.</p>
+
+                <!-- SECTION 4: Types of Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-4">
+                    <h2 id="section-4">4. Types of Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-4')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-4" class="summary-box hidden"></div>
+                <p>Embedded systems vary widely in complexity and application. So, here are the types explained in this
+                    embedded systems tutorial:</p>
+                <h4>4.1 Based on Performance and Complexity</h4>
+                <ul>
+                    <li>**Small-scale embedded systems:**
+                        <ul>
+                            <li>Use simple 8-bit or 16-bit microcontrollers.</li>
+                            <li>Limited memory and peripherals.</li>
+                            <li>*Example:* Digital watches, simple toys.</li>
+                        </ul>
+                    </li>
+                    <li>**Medium-scale embedded systems:**
+                        <ul>
+                            <li>Use 16-bit or 32-bit MCUs.</li>
+                            <li>Support RTOS and multiple peripherals.</li>
+                            <li>*Example:* Home appliances, automotive control units.</li>
+                        </ul>
+                    </li>
+                    <li>**Sophisticated embedded systems:**
+                        <ul>
+                            <li>Use powerful 32-bit or 64-bit processors.</li>
+                            <li>Run a complex OS like embedded Linux.</li>
+                            <li>*Example:* Smartphones, smart TVs, industrial robots.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4>4.2 Based on Real-Time Requirements</h4>
+                <ul>
+                    <li>**Hard real-time systems:**
+                        <ul>
+                            <li>Strict timing constraints.</li>
+                            <li>*Example:* Airbag systems, pacemakers.</li>
+                        </ul>
+                    </li>
+                    <li>**Soft real-time systems:**
+                        <ul>
+                            <li>Timing is important but not critical.</li>
+                            <li>*Example:* Video streaming, audio playback.</li>
+                        </ul>
+                    </li>
+                    <li>**Non-real-time systems:**
+                        <ul>
+                            <li>No timing constraints.</li>
+                            <li>*Example:* Digital cameras, calculators.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- SECTION 5: Embedded System Hardware -->
+                <div class="flex justify-between items-center section-header" id="section-header-5">
+                    <h2 id="section-5">5. Embedded System Hardware</h2>
+                    <button onclick="summarizeSection('section-5')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-5" class="summary-box hidden"></div>
+                <p>Microcontrollers are the most common processors in embedded systems. They integrate multiple
+                    components on a single chip:</p>
+
+                <h4 class="mt-4">5.1 Microcontrollers (MCUs)</h4>
+                <p>Microcontrollers are the most common processors in embedded systems. They integrate multiple
+                    components on a single chip:</p>
+                <ul>
+                    <li>**CPU core:** Executes instructions.</li>
+                    <li>**Memory:** Flash for program storage, RAM for data.</li>
+                    <li>**Peripherals:** Timers, ADCs, communication interfaces.</li>
+                </ul>
+                <h4>**Popular MCU Architectures**</h4>
+                <ul>
+                    <li>**ARM Cortex-M series:** Widely used 32-bit MCUs with low power consumption.</li>
+                    <li>**AVR:** 8-bit MCUs are popular in hobbyist and educational projects (Arduino).</li>
+                    <li>**PIC:** 8-bit and 16-bit MCUs used in industrial applications.</li>
+                    <li>**MSP430:** Ultra-low-power 16-bit MCUs from Texas Instruments.</li>
+                </ul>
+                <h4>5.2 Microprocessors (MPUs)</h4>
+                <p>Microprocessors are used in complex embedded systems requiring high processing power. They need
+                    external memory and peripherals.</p>
+                <p>Examples include ARM Cortex-A series used in smartphones and embedded Linux systems.</p>
+                <h4>5.3 Sensors and Actuators</h4>
+                <ul>
+                    <li>**Sensors:** Measure physical quantities and convert them to electrical signals.
+                        <ul>
+                            <li>Examples: Temperature sensors (LM35), accelerometers, light sensors.</li>
+                        </ul>
+                    </li>
+                    <li>**Actuators:** Convert electrical signals into physical actions.
+                        <ul>
+                            <li>Examples: Motors, relays, LEDs, buzzers.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4>5.4 Communication Interfaces</h4>
+                <p>Embedded systems communicate with other devices or systems using various protocols:</p>
+                <ul>
+                    <li>**UART (Universal Asynchronous Receiver/Transmitter):** Simple serial communication.</li>
+                    <li>**SPI (Serial Peripheral Interface):** High-speed synchronous communication.</li>
+                    <li>**I2C (Inter-Integrated Circuit):** Multi-master, multi-slave serial bus.</li>
+                    <li>**CAN (Controller Area Network):** Used in automotive and industrial networks.</li>
+                    <li>**USB, Ethernet, Bluetooth, Wi-Fi:** For complex communication needs.</li>
+                </ul>
+
+                <!-- SECTION 6: Embedded System Software -->
+                <div class="flex justify-between items-center section-header" id="section-header-6">
+                    <h2 id="section-6">6. Embedded System Software</h2>
+                    <button onclick="summarizeSection('section-6')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-6" class="summary-box hidden"></div>
+                <p>Firmware is the foundational software that initializes hardware and provides basic control. It is
+                    typically written in C or assembly and stored in non-volatile memory.</p>
+                <h4>6.2 Operating Systems in Embedded Systems</h4>
+                <ul>
+                    <li>**Bare-metal programming:** No OS; the application runs directly on hardware. Suitable for
+                        simple systems.</li>
+                    <li>**Real-Time Operating System (RTOS):** Provides multitasking, scheduling, and timing guarantees.
+                    </li>
+                    <li>**Embedded Linux:** Used in complex systems requiring rich OS features like networking and file
+                        systems.</li>
+                </ul>
+
+                <!-- SECTION 7: Microcontrollers vs Microprocessors -->
+                <div class="flex justify-between items-center section-header" id="section-header-7">
+                    <h2 id="section-7">7. Microcontrollers vs Microprocessors</h2>
+                    <button onclick="summarizeSection('section-7')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-7" class="summary-box hidden"></div>
+                <h4>Microcontrollers (MCUs)</h4>
+                <ul>
+                    <li>Integrated CPU, memory, and peripherals on a single chip.</li>
+                    <li>Low power consumption and cost.</li>
+                    <li>Suitable for simple to medium complexity tasks.</li>
+                    <li>Examples: ARM Cortex-M, AVR, PIC.</li>
+                </ul>
+                <h4>Microprocessors (MPUs)</h4>
+                <ul>
+                    <li>CPU only; requires external memory and peripherals.</li>
+                    <li>Higher processing power and complexity.</li>
+                    <li>Used in complex embedded systems like smartphones.</li>
+                    <li>Examples: ARM Cortex-A, Intel x86.</li>
+                </ul>
+
+                <!-- SECTION 8: Development Tools and Environments -->
+                <div class="flex justify-between items-center section-header" id="section-header-8">
+                    <h2 id="section-8">8. Development Tools and Environments</h2>
+                    <button onclick="summarizeSection('section-8')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-8" class="summary-box hidden"></div>
+                <h4>8.1 Integrated Development Environments (IDEs)</h4>
+                <p>IDEs provide a user-friendly interface for writing, compiling, and debugging embedded software.</p>
+                <ul>
+                    <li>**Keil uVision:** Popular for ARM Cortex-M MCUs.</li>
+                    <li>**MPLAB X:** Used for PIC microcontrollers.</li>
+                    <li>**IAR Embedded Workbench:** Supports multiple MCU architectures.</li>
+                    <li>**Arduino IDE:** Simplified environment for Arduino boards.</li>
+                </ul>
+                <h4>8.2 Debuggers and Programmers</h4>
+                <ul>
+                    <li>**JTAG (Joint Test Action Group):** Standard interface for debugging and programming.</li>
+                    <li>**SWD (Serial Wire Debug):** A two-wire debug interface for ARM MCUs.</li>
+                    <li>**In-Circuit Emulator (ICE):** A Hardware tool that emulates the MCU for debugging.</li>
+                </ul>
+                <h4>8.3 Simulators</h4>
+                <p>Software tools that simulate MCU behavior, useful for early development and testing.</p>
+
+                <!-- SECTION 9: Programming Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-9">
+                    <h2 id="section-9">9. Programming Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-9')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-9" class="summary-box hidden"></div>
+                <h4>9.1 Programming Languages</h4>
+                <ul>
+                    <li>**C:** The most widely used language due to its efficiency and control over hardware.</li>
+                    <li>**Assembly:** Used for critical low-level code and optimization.</li>
+                    <li>**C++:** Used in complex embedded applications requiring object-oriented features.</li>
+                    <li>**Python/MicroPython:** Used in some modern MCUs for rapid prototyping.</li>
+                </ul>
+                <h4>9.2 Basic Programming Concepts</h4>
+                <h5>Memory Management</h5>
+                <p>Understanding the memory map of the MCU is crucial:</p>
+                <ul>
+                    <li>**Flash memory:** Stores program code.</li>
+                    <li>**RAM:** Stores variables and the stack during execution.</li>
+                    <li>**EEPROM:** Stores non-volatile data.</li>
+                </ul>
+                <h5>Interrupts</h5>
+                <p>Interrupts allow the MCU to respond immediately to external or internal events.</p>
+                <ul>
+                    <li>**Interrupt Service Routine (ISR):** A special function executed when an interrupt occurs.</li>
+                    <li>**Interrupt vector table:** Maps interrupts to their ISRs.</li>
+                </ul>
+                <h5>Timers and Counters</h5>
+                <p>Used for generating delays, measuring time intervals, or counting events.</p>
+                <h5>Peripheral Control</h5>
+                <p>MCUs control peripherals by reading/writing to special registers.</p>
+                <h4>9.3 Example: Blinking an LED on ARM Cortex-M (C code)</h4>
+                <pre><code>
+#include "stm32f4xx.h" // Device header <br />&nbsp;<br />
+void delay(int count) {&nbsp;<br />
+ while(count--) {&nbsp;<br />
+ __NOP(); // No operation&nbsp;<br />
+ }&nbsp;<br />
+}&nbsp;<br />
+&nbsp;<br />
+int main(void) {&nbsp;<br />
+ // Enable GPIOA clock&nbsp;<br />
+ RCC-&gt;AHB1ENR |= RCC_AHB1ENR_GPIOAEN;&nbsp;<br />
+&nbsp;<br />
+ // Set PA5 as output (LED pin on many STM32 boards)&nbsp;<br />
+ GPIOA-&gt;MODER &amp;= ~(0x3 &lt;&lt; (5 * 2)); // Clear mode bits&nbsp;<br />
+ GPIOA-&gt;MODER |= (0x1 &lt;&lt; (5 * 2)); // Set as output&nbsp;<br />
+&nbsp;<br />
+ while(1) {&nbsp;<br />
+ GPIOA-&gt;ODR ^= (1 &lt;&lt; 5); // Toggle LED&nbsp;<br />
+ delay(1000000);&nbsp;<br />
+ }&nbsp;<br />
+}
+</code></pre>
+
+                <!-- SECTION 11: Interfacing and Communication Protocols -->
+                <div class="flex justify-between items-center section-header" id="section-header-11">
+                    <h2 id="section-11">11. Interfacing and Communication Protocols</h2>
+                    <button onclick="summarizeSection('section-11')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-11" class="summary-box hidden"></div>
+                <p>Embedded systems often need to communicate with sensors, actuators, or other systems. Understanding
+                    communication protocols is essential. So here is the explanation of the Interfacing and
+                    Communication Protocols in this embedded systems tutorial:</p>
+                <h4>11.1 Digital and Analog Interfaces</h4>
+                <ul>
+                    <li>**GPIO (General Purpose Input/Output):** Pins configured as input or output to read switches or
+                        control LEDs.</li>
+                    <li>**ADC (Analog to Digital Converter):** Converts analog signals (e.g., temperature sensor
+                        voltage) to digital values.</li>
+                    <li>**DAC (Digital to Analog Converter):** Converts digital values to analog signals.</li>
+                </ul>
+                <h4>11.2 Common Communication Protocols</h4>
+                <h5>11.2.1 UART (Universal Asynchronous Receiver/Transmitter)</h5>
+                <ul>
+                    <li>Simple serial communication protocol.</li>
+                    <li>Uses two wires: TX (transmit) and RX (receive).</li>
+                    <li>Asynchronous: no clock signal; data framed with start and stop bits.</li>
+                    <li>Baud rates commonly 9600, 115200 bps.</li>
+                </ul>
+                <p><strong>Use case:</strong> Debugging, GPS modules, serial communication with PCs.</p>
+                <h5>11.2.2 SPI (Serial Peripheral Interface)</h5>
+                <ul>
+                    <li>Synchronous serial communication.</li>
+                    <li>Uses four wires: MOSI (Master Out Slave In), MISO (Master In Slave Out), SCLK (clock), and SS
+                        (slave select).</li>
+                    <li>Full-duplex communication.</li>
+                    <li>High speed, used for sensors, memory chips.</li>
+                </ul>
+                <h5>11.2.3 I2C (Inter-Integrated Circuit)</h5>
+                <ul>
+                    <li>Two-wire synchronous serial bus: SDA (data) and SCL (clock).</li>
+                    <li>Supports multiple masters and slaves.</li>
+                    <li>Uses addressing to select devices.</li>
+                    <li>Slower than SPI but simpler wiring.</li>
+                </ul>
+                <h5>11.2.4 CAN (Controller Area Network)</h5>
+                <ul>
+                    <li>Robust multi-master serial bus used in automotive and industrial applications.</li>
+                    <li>Supports error detection and fault confinement.</li>
+                    <li>Operates at speeds up to 1 Mbps.</li>
+                </ul>
+                <h5>11.2.5 USB, Ethernet, Bluetooth, Wi-Fi</h5>
+                <ul>
+                    <li>Used for complex communication needs, networking, and wireless connectivity.</li>
+                    <li>Require more processing power and software stacks.</li>
+                </ul>
+
+                <!-- SECTION 12: Debugging and Testing Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-12">
+                    <h2 id="section-12">12. Debugging and Testing Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-12')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-12" class="summary-box hidden"></div>
+                <p>Debugging embedded systems can be challenging due to limited visibility into the system.</p>
+                <h4>12.1 Debugging Techniques</h4>
+                <h5>12.1.1 Using Debug Probes</h5>
+                <ul>
+                    <li>Hardware tools connected via JTAG or SWD interfaces.</li>
+                    <li>Allow setting breakpoints, stepping through code, inspecting registers, and memory.</li>
+                </ul>
+                <h5>12.1.2 Serial Debug Output</h5>
+                <ul>
+                    <li>Use UART to send debug messages to a terminal.</li>
+                    <li>Useful for logging system status and variable values.</li>
+                </ul>
+                <h5>12.1.3 Logic Analyzers and Oscilloscopes</h5>
+                <ul>
+                    <li>Analyze digital signals and timing on communication lines or GPIO pins.</li>
+                    <li>Essential for debugging hardware interfaces and timing issues.</li>
+                </ul>
+                <h5>12.1.4 LED Indicators</h5>
+                <ul>
+                    <li>Simple method to indicate system states or errors by blinking LEDs.</li>
+                </ul>
+                <h4>12.2 Testing Strategies</h4>
+                <ul>
+                    <li>**Unit Testing:** Test individual software modules in isolation.</li>
+                    <li>**Integration Testing:** Test combined modules working together.</li>
+                    <li>**System Testing:** Test the complete embedded system in real conditions.</li>
+                    <li>**Hardware-in-the-Loop (HIL) Testing:** Simulate hardware inputs to test software.</li>
+                </ul>
+
+                <!-- SECTION 13: Case Study: Building a Simple Temperature Monitoring System -->
+                <div class="flex justify-between items-center section-header" id="section-header-13">
+                    <h2 id="section-13">13. Case Study: Building a Simple Temperature Monitoring System</h2>
+                    <button onclick="summarizeSection('section-13')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-13" class="summary-box hidden"></div>
+                <p>Design and implement a temperature monitoring system that reads temperature from a sensor and
+                    displays it on an LCD.</p>
+                <!-- Content continues... -->
+
+                <!-- SECTION 14: Advanced Topics in Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-14">
+                    <h2 id="section-14">14. Advanced Topics in Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-14')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-14" class="summary-box hidden"></div>
+                <p>As you gain proficiency in embedded systems, exploring advanced topics will deepen your understanding
+                    and open new possibilities.</p>
+                <!-- Content continues... -->
+
+                <!-- SECTION 15: Future Trends in Embedded Systems -->
+                <div class="flex justify-between items-center section-header" id="section-header-15">
+                    <h2 id="section-15">15. Future Trends in Embedded Systems</h2>
+                    <button onclick="summarizeSection('section-15')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-15" class="summary-box hidden"></div>
+                <p>Embedded systems continue to evolve rapidly, driven by technological advances and new applications.
+                </p>
+                <!-- Content continues... -->
+
+                <!-- SECTION 16: Additional Example Projects -->
+                <div class="flex justify-between items-center section-header" id="section-header-16">
+                    <h2 id="section-16">16. Additional Example Projects</h2>
+                    <button onclick="summarizeSection('section-16')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-16" class="summary-box hidden"></div>
+                <p>**Objective:** Control the speed of a DC motor using Pulse Width Modulation (PWM) on a
+                    microcontroller.</p>
+                <!-- Content continues... -->
+
+                <!-- SECTION 18: Detailed Explanation of Key Communication Protocols -->
+                <div class="flex justify-between items-center section-header" id="section-header-18">
+                    <h2 id="section-18">18. Detailed Explanation of Key Communication Protocols</h2>
+                    <button onclick="summarizeSection('section-18')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-18" class="summary-box hidden"></div>
+                <p>Embedded systems often need to communicate with sensors, actuators, or other systems. Understanding
+                    communication protocols is essential. So here is the explanation of the Interfacing and
+                    Communication Protocols in this embedded systems tutorial:</p>
+                <!-- Content continues... -->
+
+                <!-- SECTION 19: Practical Embedded System Design Exercise -->
+                <div class="flex justify-between items-center section-header" id="section-header-19">
+                    <h2 id="section-19">19. Practical Embedded System Design Exercise</h2>
+                    <button onclick="summarizeSection('section-19')"
+                        class="summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        ✨ Summarize
+                    </button>
+                </div>
+                <div id="summary-section-19" class="summary-box hidden"></div>
+                <p>Design a Smart Home Temperature and Humidity Monitor with Alert</p>
+                <!-- Content continues... -->
+
+                <!-- Conclusion -->
+                <div class="flex justify-between items-center section-header" id="section-header-20">
+                    <h2 id="section-20">Conclusion</h2>
+                    <button onclick="speakConclusion()" id="speakBtn"
+                        class="bg-gray-600 hover:bg-gray-700 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap">
+                        🔊 Read Conclusion
+                    </button>
+                </div>
+                <div id="audioContainer" class="mt-4 hidden">
+                    <audio id="audioPlayer" controls class="w-full rounded-lg shadow-inner"></audio>
+                </div>
+                <p id="conclusionText">Embedded systems are small computers integrated into machines and devices to
+                    perform specific tasks. They are used everywhere, from cars and medical tools to smart home gadgets.
+                    They work quickly, use little power, and are very reliable. Modern embedded systems now include AI,
+                    IoT, and better security. To learn them, beginners should start with the basics, coding, and
+                    hands-on projects. As technology grows, embedded systems offer many chances for new ideas and good
+                    careers.</p>
+                <!-- END OF USER-PROVIDED CONTENT -->
+            </div>
+        </div>
+
+        <!-- Call to Action / Related Posts Section (Example) -->
+        <div class="mt-16 border-t pt-10 border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Continue Your Learning</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <p class="text-blue-600 text-sm font-semibold mb-2">Tutorials</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Mastering RTOS Scheduling</h4>
+                    <p class="text-gray-600 text-sm">Dive deep into Real-Time Operating Systems and learn how to manage
+                        tasks efficiently with different scheduling algorithms.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <p class="text-blue-600 text-sm font-semibold mb-2">IoT</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Security Best Practices for Connected Devices</h4>
+                    <p class="text-gray-600 text-sm">Understand the critical security challenges in the IoT space and
+                        how to implement robust firmware protection.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <p class="text-blue-600 text-sm font-semibold mb-2">Projects</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Build a TinyML Voice Assistant</h4>
+                    <p class="text-gray-600 text-sm">A step-by-step guide to deploying machine learning models on a
+                        resource-constrained microcontroller.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-400 text-sm">
+                &copy; 2025 TechBlog. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a>
+                | <a href="#" class="hover:text-blue-400">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const API_KEY = "AIzaSyBhlSTCc46Qh_blpbsFSONvYD7ZMhfYaSc";
+
+        const LLM_TEXT_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+        const LLM_TTS_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${API_KEY}`;
+        const MAX_RETRIES = 3;
+
+
+        async function fetchWithRetry(url, options) {
+            for (let i = 0; i < MAX_RETRIES; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        // Custom error message for 401/403 errors, suggesting API key problem
+                        if (response.status === 401 || response.status === 403) {
+                            throw new Error(`Authentication Error (Status ${response.status}): The API request was unauthorized or forbidden. Please ensure your Gemini API key is valid and correctly configured in the environment.`);
+                        }
+                        // Handle 429 Rate Limit
+                        if (response.status === 429 && i < MAX_RETRIES - 1) {
+                            const delay = Math.pow(2, i) * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            continue;
+                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === MAX_RETRIES - 1) {
+                        console.error('API call failed after max retries:', error);
+                        throw error;
+                    }
+                    // Re-throw to continue retry loop
+                    if (error.message && error.message.includes('HTTP error')) {
+                        // Skip custom logging for retries, just let the loop continue
+                    } else {
+                        throw error; // Throw non-retryable errors immediately
+                    }
+                }
+            }
+        }
+
+
+        function getSectionContent(sectionId) {
+            const h2 = document.getElementById(sectionId);
+            if (!h2) return "";
+
+            let content = h2.textContent + "\n\n";
+            let sibling = h2.parentElement.nextElementSibling; // Start after the H2 wrapper div
+
+            // If the next sibling is the summary box, skip it
+            if (sibling && sibling.classList.contains('summary-box')) {
+                sibling = sibling.nextElementSibling;
+            }
+
+            while (sibling && sibling.tagName !== 'DIV' && sibling.querySelector('h2') === null) {
+                // Stop when encountering the next H2 or a DIV wrapper containing an H2 (for the next section)
+                if (sibling.classList.contains('section-header') || (sibling.tagName === 'DIV' && sibling.querySelector('h2'))) {
+                    break;
+                }
+                content += sibling.textContent + "\n";
+                sibling = sibling.nextElementSibling;
+            }
+            // Remove multiple newlines and extra spaces
+            return content.replace(/(\n\s*){2,}/g, '\n\n').trim();
+        }
+
+        async function summarizeSection(sectionId) {
+            const summaryOutput = document.getElementById(`summary-${sectionId}`);
+            const button = summaryOutput.previousElementSibling.querySelector('.summarize-btn');
+
+            if (!summaryOutput.classList.contains('hidden')) {
+                summaryOutput.classList.add('hidden');
+                button.textContent = '✨ Summarize';
+                return;
+            }
+
+            button.disabled = true;
+            button.innerHTML = '<span class="loading-ring"></span> Summarizing...';
+            summaryOutput.classList.remove('hidden');
+            summaryOutput.innerHTML = '<p class="text-gray-600">Generating concise summary...</p>';
+
+            const sectionContent = getSectionContent(sectionId);
+            const title = document.getElementById(sectionId).textContent.trim();
+
+            const systemPrompt = `You are an expert technical editor. Summarize the following section, titled "${title}", into a single, concise paragraph (max 4-5 sentences). Focus only on the core concepts and maintain a professional, educational tone. Do not use any markdown formatting like bolding or lists.`;
+            const userQuery = sectionContent;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            try {
+                const result = await fetchWithRetry(LLM_TEXT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text || "Summary generation failed. Please try again.";
+                summaryOutput.innerHTML = `<p class="font-semibold text-gray-800">Summary:</p><p class="text-gray-700 mt-1">${generatedText}</p>`;
+
+            } catch (error) {
+                const isAuthError = error.message.includes('Authentication Error');
+                if (isAuthError) {
+                    summaryOutput.innerHTML = `<p class="text-red-700 font-semibold">Authentication Failed:</p><p class="text-red-600 mt-1">The request was unauthorized. Please ensure your Gemini API key is valid and correctly provided by the environment.</p>`;
+                } else {
+                    summaryOutput.innerHTML = `<p class="text-red-600">Error generating summary. Network or API issue: ${error.message}</p>`;
+                }
+                console.error('Summary API Error:', error);
+            } finally {
+                button.disabled = false;
+                button.textContent = '✨ Hide Summary';
+            }
+        }
+
+        async function explainTerminology() {
+            const input = document.getElementById('termInput');
+            const output = document.getElementById('explainerOutput');
+            const button = document.getElementById('explainBtn');
+            const term = input.value.trim();
+
+            if (!term) {
+                output.classList.remove('hidden');
+                output.innerHTML = '<p class="text-red-700">Please enter a term to explain.</p>';
+                return;
+            }
+
+            button.disabled = true;
+            button.innerHTML = '<span class="loading-ring"></span> Explaining...';
+            output.classList.remove('hidden');
+            output.innerHTML = `<p class="text-gray-600">Searching for and explaining "${term}"...</p>`;
+
+            const systemPrompt = `You are a concise technical dictionary. Explain the term "${term}" in a single paragraph (max 3-4 sentences), making the definition easy to understand for an engineering student. Use real-time data if necessary.`;
+            const userQuery = `Define and explain the term: ${term}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                tools: [{ "google_search": {} }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            try {
+                const result = await fetchWithRetry(LLM_TEXT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const candidate = result.candidates?.[0];
+                const generatedText = candidate?.content?.parts?.[0]?.text || `Could not find a clear explanation for "${term}".`;
+
+                let sourceHtml = '';
+                const groundingMetadata = candidate?.groundingMetadata;
+                if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                    const sources = groundingMetadata.groundingAttributions
+                        .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                        .filter(source => source.uri && source.title)
+                        .slice(0, 9); // Limit to 9 sources
+
+                    if (sources.length > 0) {
+                        sourceHtml = '<div class="mt-3 pt-3 border-t border-yellow-200 text-xs text-gray-500">Sources: ' +
+                            sources.map(s => `<a href="${s.uri}" target="_blank" class="hover:text-blue-500 underline">${s.title}</a>`).join(' | ') +
+                            '</div>';
+                    }
+                }
+
+                output.innerHTML = `<p class="font-semibold text-gray-900">${term}:</p><p class="mt-1">${generatedText}</p>${sourceHtml}`;
+
+            } catch (error) {
+                const isAuthError = error.message.includes('Authentication Error');
+                if (isAuthError) {
+                    output.innerHTML = `<p class="text-red-700 font-semibold">Authentication Failed:</p><p class="text-red-600 mt-1">The request was unauthorized. Please ensure your Gemini API key is valid and correctly provided by the environment.</p>`;
+                } else {
+                    output.innerHTML = `<p class="text-red-700">Error retrieving explanation. Please check your network. (${error.message})</p>`;
+                }
+                console.error('Explainer API Error:', error);
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Explain Term';
+            }
+        }
+
+        /* --- TTS Helper Functions (Text-to-Speech) --- */
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64.replace(/\s/g, ''));
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcm16, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcm16.length * 2);
+            const view = new DataView(buffer);
+            let offset = 0;
+
+            function writeString(str) {
+                for (let i = 0; i < str.length; i++) {
+                    view.setUint8(offset++, str.charCodeAt(i));
+                }
+            }
+
+            // RIFF chunk descriptor
+            writeString('RIFF');
+            view.setUint32(offset, 36 + pcm16.length * 2, true); offset += 4;
+            writeString('WAVE');
+
+            // FMT chunk
+            writeString('fmt ');
+            view.setUint32(offset, 16, true); offset += 4; // Sub-chunk size
+            view.setUint16(offset, 1, true); offset += 2;  // Audio format (1 for PCM)
+            view.setUint16(offset, 1, true); offset += 2;  // Channels (1 for mono)
+            view.setUint32(offset, sampleRate, true); offset += 4; // Sample rate
+            view.setUint32(offset, sampleRate * 2, true); offset += 4; // Byte rate
+            view.setUint16(offset, 2, true); offset += 2;  // Block align
+            view.setUint16(offset, 16, true); offset += 2; // Bits per sample
+
+            // Data chunk
+            writeString('data');
+            view.setUint32(offset, pcm16.length * 2, true); offset += 4; // Sub-chunk 2 size
+
+            // Write PCM data
+            for (let i = 0; i < pcm16.length; i++) {
+                view.setInt16(offset, pcm16[i], true); offset += 2;
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        /**
+         * Converts conclusion text to speech and plays it.
+         */
+        async function speakConclusion() {
+            const conclusionText = document.getElementById('conclusionText').textContent;
+            const audioContainer = document.getElementById('audioContainer');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const button = document.getElementById('speakBtn');
+
+            // Hide or show the player based on current state
+            if (!audioContainer.classList.contains('hidden')) {
+                audioContainer.classList.add('hidden');
+                audioPlayer.pause();
+                button.textContent = '🔊 Read Conclusion';
+                return;
+            }
+
+            button.disabled = true;
+            button.innerHTML = '<span class="loading-ring"></span> Generating Audio...';
+
+            const payload = {
+                contents: [{ parts: [{ text: `Say in a clear, professional, and concluding tone: ${conclusionText}` }] }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Rasalgethi" } // Knowledgeable voice
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            try {
+                const result = await fetchWithRetry(LLM_TTS_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioData = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType;
+
+                if (audioData && mimeType && mimeType.startsWith("audio/L16")) {
+                    const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                    const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 24000; // Defaulting to 24000
+
+                    const pcmData = base64ToArrayBuffer(audioData);
+                    const pcm16 = new Int16Array(pcmData);
+                    const wavBlob = pcmToWav(pcm16, sampleRate);
+                    const audioUrl = URL.createObjectURL(wavBlob);
+
+                    audioPlayer.src = audioUrl;
+                    audioContainer.classList.remove('hidden');
+                    audioPlayer.play();
+                } else {
+                    throw new Error('Invalid audio data received.');
+                }
+
+            } catch (error) {
+                const isAuthError = error.message.includes('Authentication Error');
+                const container = document.getElementById('section-header-20');
+                const errorMsg = document.createElement('p');
+
+                if (isAuthError) {
+                    errorMsg.className = 'text-red-600 mt-2 text-sm';
+                    errorMsg.textContent = 'Authentication Failed: Please ensure your Gemini API key is valid.';
+                } else {
+                    errorMsg.className = 'text-red-600 mt-2 text-sm';
+                    errorMsg.textContent = 'Error playing audio: Failed to convert text to speech.';
+                }
+                container.appendChild(errorMsg);
+                console.error('TTS API Error:', error);
+            } finally {
+                button.disabled = false;
+                button.textContent = '🔊 Hide Player';
+            }
+        }
+
+        /* --- AI Text Explainer Feature --- */
+        let currentExplainerPopup = null;
+
+        async function showAutoExplainer(selectedText) {
+            // Remove existing popup
+            if (currentExplainerPopup) {
+                currentExplainerPopup.remove();
+            }
+
+            // Create explanation popup
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-white rounded-xl p-6 max-w-2xl mx-4 shadow-2xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-900">✨ AI Explanation</h3>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <div class="mb-4 p-3 bg-gray-100 rounded-lg">
+                        <p class="text-sm text-gray-600 mb-1">Selected text:</p>
+                        <p class="font-medium text-gray-800">"${selectedText}"</p>
+                    </div>
+                    <div id="explanationContent" class="text-gray-600">Generating explanation...</div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            currentExplainerPopup = popup;
+
+            const systemPrompt = `You are an expert technical educator. Explain the following text in simple, clear terms. Provide context, definitions of technical terms, and practical examples. Keep it concise but informative (max 4-5 sentences).`;
+            const payload = {
+                contents: [{ parts: [{ text: `Explain this text: "${selectedText}"` }] }],
+                tools: [{ "google_search": {} }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const result = await fetchWithRetry(LLM_TEXT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const explanation = result.candidates?.[0]?.content?.parts?.[0]?.text || 'Could not generate explanation.';
+                const contentEl = document.getElementById('explanationContent');
+                if (contentEl) {
+                    contentEl.innerHTML = `<p class="text-gray-800">${explanation}</p>`;
+                }
+            } catch (error) {
+                const contentEl = document.getElementById('explanationContent');
+                if (contentEl) {
+                    contentEl.innerHTML = `<p class="text-red-600">Error: ${error.message}</p>`;
+                }
+            }
+        }
+
+        function handleTextSelection() {
+            setTimeout(() => {
+                const selection = window.getSelection();
+                const selectedText = selection.toString().trim();
+
+                if (selectedText.length > 10) {
+                    showAutoExplainer(selectedText);
+                }
+            }, 100);
+        }
+
+        // Auto-run to fix the H2 structure after initial load for correct summarization logic
+        // This ensures the custom wrapper and button are applied to all H2s in the content.
+        window.onload = function () {
+            // Add text selection listener to entire article content
+            document.querySelector('.article-content').addEventListener('mouseup', handleTextSelection);
+            const sections = document.querySelectorAll('.article-content > h2');
+            sections.forEach(h2 => {
+                // Skip the H2s we already wrapped, like the conclusion
+                if (h2.parentElement.classList.contains('section-header')) return;
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex justify-between items-center section-header';
+                wrapper.id = `section-header-${h2.id.replace('section-', '')}`;
+
+                // Create the button
+                const button = document.createElement('button');
+                button.className = 'summarize-btn bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full shadow-md transition duration-200 ml-4 whitespace-nowrap';
+                button.textContent = '✨ Summarize';
+                button.onclick = () => summarizeSection(h2.id);
+
+                // Create the summary output box
+                const summaryBox = document.createElement('div');
+                summaryBox.id = `summary-${h2.id}`;
+                summaryBox.className = 'summary-box hidden';
+
+                // Move h2 to wrapper
+                h2.parentElement.insertBefore(wrapper, h2);
+                wrapper.appendChild(h2);
+                wrapper.appendChild(button);
+
+                // Insert the summary box after the wrapper
+                wrapper.parentElement.insertBefore(summaryBox, wrapper.nextElementSibling);
+            });
+        };
+    </script>
+
+</body>
+
+</html>
